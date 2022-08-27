@@ -20,20 +20,10 @@ async function selectCourses() {
 
 async function requestCourses() {
   // Request courses from DB
-  axios
-    .get(
-      'https://json-server-1ugqwq--3000.local.webcontainer.io/api/v1/courses'
-    )
-    .then(function (response) {
-      return response
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  let url =
+  const response = await axios.get(
     'https://json-server-1ugqwq--3000.local.webcontainer.io/api/v1/courses'
-  const courses = await fetch(url, { method: 'GET' })
-  return courses.json()
+  )
+  return response.data
 }
 
 document.getElementById('course').addEventListener('change', (ev) => {
@@ -143,15 +133,20 @@ document.getElementById('logForm').addEventListener('submit', async (ev) => {
     text: ev.target[2].value,
     id: createUUID(),
   }
-  let url = 'https://json-server-1ugqwq--3000.local.webcontainer.io/logs'
-  const addLog = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newLog),
-  }).then(self.requestLogs())
+  await axios
+    .post('https://json-server-1ugqwq--3000.local.webcontainer.io/logs', newLog)
+    .then(function (response) {
+      console.log(response), self.requestLogs()
+    })
+
+  //   const addLog = await fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(newLog),
+  //   }).then(self.requestLogs())
 })
 
 function createUUID() {
