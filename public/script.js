@@ -20,6 +20,16 @@ async function selectCourses() {
 
 async function requestCourses() {
   // Request courses from DB
+  axios
+    .get(
+      'https://json-server-1ugqwq--3000.local.webcontainer.io/api/v1/courses'
+    )
+    .then(function (response) {
+      return response
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   let url =
     'https://json-server-1ugqwq--3000.local.webcontainer.io/api/v1/courses'
   const courses = await fetch(url, { method: 'GET' })
