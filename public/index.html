@@ -13,38 +13,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
-  <body onload="onPageLoad()" class="m-10">
-    <form id="logForm" class="bg-green-200 flex flex-wrap">
-      <select
-        aria-label="Select Course"
-        id="course"
-        name="course"
-        data-cy="course_select"
-        class="m-5"
-      >
-        <option selected value="">Choose Courses</option></select
-      ><br />
+  <body onload="onPageLoad()" class="m-10 border-box">
+    <form id="logForm" class="bg-green-200 flex flex-wrap w-2/3 m-auto">
+      <div class="flex flex-wrap w-1/3 border-r-2 border-gray-300">
+        <select
+          aria-label="Select Course"
+          id="course"
+          name="course"
+          data-cy="course_select"
+          class="m-5"
+        >
+          <option selected value="">Choose Courses</option></select
+        ><br />
 
-      <div id="idDiv" class="hidden">
-        <label for="uvuId">UVU ID</label><br />
-        <input type="text" id="uvuId" name="uvuId" data-cy="uvuId_input" />
-        <p id="idWarning" class="hidden warning"></p>
+        <div id="idDiv" class="hidden">
+          <label for="uvuId">UVU ID</label><br />
+          <input type="text" id="uvuId" name="uvuId" data-cy="uvuId_input" />
+          <p id="idWarning" class="hidden warning"></p>
+        </div>
+        <div class="flex flex-col">
+          <label class="mx-5">New Log</label>
+          <textarea
+            style="height: 75px"
+            aria-label="add log textarea"
+            data-cy="log_textarea"
+            class="mx-5 my-2"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          data-cy="add_log_btn"
+          class="bg-blue-200 m-5 p-3"
+          disabled
+        >
+          Add Log
+        </button>
       </div>
-
-      <label>New Log</label><br />
-      <textarea
-        style="height: 75px"
-        aria-label="add log textarea"
-        data-cy="log_textarea"
-      ></textarea
-      ><br />
-      <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay">
+      <br />
+      <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay" class="border-l-1">
         Student Logs for 10234567
       </h3>
       <div id="logDiv">
         <ul data-cy="logs"></ul>
       </div>
-      <button type="submit" data-cy="add_log_btn" disabled>Add Log</button>
     </form>
 
     <script src="script.js"></script>
