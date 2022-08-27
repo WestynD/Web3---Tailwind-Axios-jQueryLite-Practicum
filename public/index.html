@@ -18,15 +18,23 @@
           id="course"
           name="course"
           data-cy="course_select"
-          class="mb-5 w-150"
+          class="mb-5 w-150 self-start"
         >
           <option selected value="">Choose Courses</option>
         </select>
 
         <div id="idDiv" class="hidden">
-          <label for="uvuId">UVU ID</label>
-          <input type="text" id="uvuId" name="uvuId" data-cy="uvuId_input" />
-          <p id="idWarning" class="hidden warning"></p>
+          <div class="flex flex-col">
+            <label for="uvuId" class="self-start width-full">UVU ID</label>
+            <input
+              type="text"
+              id="uvuId"
+              name="uvuId"
+              data-cy="uvuId_input"
+              class="self-start"
+            />
+            <p id="idWarning" class="hidden color-red-500"></p>
+          </div>
         </div>
         <div class="flex flex-col">
           <label class="">New Log</label>
@@ -49,7 +57,7 @@
       </div>
       <br />
       <div class="flex flex-col w-2/3">
-        <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay" class="pl-5 pb-5">
+        <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay" class="pl-10 pb-5">
           Student Logs for 10234567
         </h3>
         <div id="logDiv" class="mx-5 bg-yellow-200 hidden p-5">
