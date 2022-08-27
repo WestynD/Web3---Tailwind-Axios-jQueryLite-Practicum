@@ -70,7 +70,7 @@ function addLog(container, log) {
   // Helper function to add a json log to the list of logs on the page
   let logElem = document.createElement('li')
   logElem.classList.add('clickToHide')
-  logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-linex">${log.text}</p></pre>`
+  logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre>`
   container.appendChild(logElem)
 }
 
