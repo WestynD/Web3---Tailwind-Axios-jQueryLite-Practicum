@@ -8,8 +8,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body onload="onPageLoad()" class="m-10 border-box">
-    <form id="logForm" class="bg-green-200 flex flex-wrap w-2/3 m-auto p-5">
+  <body onload="onPageLoad()" class="border-box">
+    <header class="bg-[#F9842A] p-5 mb-5">UVU Logging System</header>
+    <h2>View and create student logs</h2>
+    <form id="logForm" class="bg-blue-200 flex flex-wrap w-2/3 m-auto p-5">
       <div
         class="flex flex-nowrap flex-col w-1/3 border-r-2 border-gray-500 pr-5"
       >
@@ -23,18 +25,16 @@
           <option selected value="">Choose Courses</option>
         </select>
 
-        <div id="idDiv" class="hidden">
-          <div class="flex flex-col">
-            <label for="uvuId" class="self-start width-full">UVU ID</label>
-            <input
-              type="text"
-              id="uvuId"
-              name="uvuId"
-              data-cy="uvuId_input"
-              class="self-start"
-            />
-            <p id="idWarning" class="hidden text-red-500"></p>
-          </div>
+        <div id="idDiv" class="hidden flex flex-col mb-5">
+          <label for="uvuId" class="self-start width-full">UVU ID</label>
+          <input
+            type="text"
+            id="uvuId"
+            name="uvuId"
+            data-cy="uvuId_input"
+            class="self-start"
+          />
+          <p id="idWarning" class="hidden text-red-500"></p>
         </div>
         <div class="flex flex-col mb-5">
           <label class="">New Log</label>
