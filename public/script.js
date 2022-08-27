@@ -68,9 +68,10 @@ document.getElementById('uvuId').addEventListener('input', (ev) => {
 
 function addLog(container, log) {
   // Helper function to add a json log to the list of logs on the page
+  document.querySelector('#logDiv').classList.remove('hidden')
   let logElem = document.createElement('li')
   logElem.classList.add('clickToHide')
-  logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre>`
+  logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre><hr class="my-5 border-gray-500">`
   container.appendChild(logElem)
 }
 
@@ -94,17 +95,20 @@ async function requestLogs() {
         document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
           toggleHide.addEventListener('click', (ev) => {
             let logText = toggleHide.querySelector('p')
+            let timestamp = toggleHide.querySelector('small')
             if (logText.classList.contains('hidden')) {
               logText.classList.remove('hidden')
+              timestamp.classList.remove('mt-2')
             } else {
               logText.classList.add('hidden')
+              timestamp.classList.add('mt-3')
             }
           })
         })
         document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
           document.getElementById('uvuId').value
         }`
-        document.querySelector('form > button').disabled = false
+        document.querySelector('#submitButton').disabled = false
       }
     } else {
       logContainer.innerHTML = `<p class="warning">Something went wrong. Please try again</p>`

@@ -4,11 +4,7 @@
     <title>Student Log</title>
     <meta charset="utf8" />
 
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico"
-    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico?" />
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -43,11 +39,12 @@
         </div>
         <button
           type="submit"
+          id="submitButton"
           data-cy="add_log_btn"
-          class="bg-blue-200 p-3 disabled:opacity-50"
+          class="bg-blue-200 p-3 disabled:opacity-50 width: 1/2"
           disabled
         >
-          Add Log
+          Add New Log
         </button>
       </div>
       <br />
@@ -55,7 +52,7 @@
         <h3 id="uvuIdDisplay" data-cy="uvuIdDisplay" class="pl-5 pb-5">
           Student Logs for 10234567
         </h3>
-        <div id="logDiv" class="mx-5">
+        <div id="logDiv" class="mx-5 bg-yellow-200 hidden p-5">
           <ul data-cy="logs"></ul>
         </div>
       </div>
