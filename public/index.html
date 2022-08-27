@@ -13,19 +13,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
-  <body onload="onPageLoad()">
-    <form id="logForm">
+  <body onload="onPageLoad()" class="m-10">
+    <form id="logForm" class="bg-green-200 flex flex-wrap">
       <select
         aria-label="Select Course"
         id="course"
         name="course"
         data-cy="course_select"
+        class="m-5"
       >
         <option selected value="">Choose Courses</option></select
       ><br />
 
       <div id="idDiv" class="hidden">
-        <label for="uvuId" class="m-40">UVU ID</label><br />
+        <label for="uvuId">UVU ID</label><br />
         <input type="text" id="uvuId" name="uvuId" data-cy="uvuId_input" />
         <p id="idWarning" class="hidden warning"></p>
       </div>
