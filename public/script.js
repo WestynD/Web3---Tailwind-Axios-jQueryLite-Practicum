@@ -81,42 +81,68 @@ async function requestLogs() {
   var requestURL = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${
     document.getElementById('course').value
   }&uvuId=${document.getElementById('uvuId').value}`
-  request.onreadystatechange = function () {
-    let logContainer = document.querySelector('#logDiv > ul')
-    if (this.status == 200 || this.status == 304) {
-      if (this.responseText === '' || this.responseText === '[]') {
-        logContainer.innerHTML = `<p>No data found</p>`
-      } else {
-        logContainer.innerHTML = ''
-        console.log(this.responseText)
-        for (let log of JSON.parse(this.responseText)) {
-          addLog(logContainer, log)
-        }
-        document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
-          toggleHide.addEventListener('click', (ev) => {
-            let logText = toggleHide.querySelector('p')
-            let timestamp = toggleHide.querySelector('small')
-            if (logText.classList.contains('hidden')) {
-              logText.classList.remove('hidden')
-              timestamp.classList.remove('mt-2')
-            } else {
-              logText.classList.add('hidden')
-              timestamp.classList.add('mt-3')
-            }
-          })
-        })
-        document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
-          document.getElementById('uvuId').value
-        }`
-        document.querySelector('#submitButton').disabled = false
-      }
-    } else {
-      logContainer.innerHTML = `<p class="warning">Something went wrong. Please try again</p>`
-      //error message
+
+  const requestedLogs = await axios.get(url)
+  let logList = document.querySelector('#logDiv > ul')
+  if (this.requestedLogs === '') {
+    logList.innerHTML = `<p>No data found</p>`
+  } else {
+    logList.innerHTML = ''
+    console.log(this.responseText)
+    for (let log of JSON.parse(this.responseText)) {
+      addLog(logList, log)
     }
+    document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
+      toggleHide.addEventListener('click', (ev) => {
+        let logText = toggleHide.querySelector('p')
+        let timestamp = toggleHide.querySelector('small')
+        if (logText.classList.contains('hidden')) {
+          logText.classList.remove('hidden')
+          timestamp.classList.remove('mt-2')
+        } else {
+          logText.classList.add('hidden')
+          timestamp.classList.add('mt-3')
+        }
+      })
+    })
   }
-  request.open('GET', requestURL, true)
-  request.send()
+
+  // // request.onreadystatechange = function () {
+  // //   let logContainer = document.querySelector('#logDiv > ul')
+  // //   if (this.status == 200 || this.status == 304) {
+  // //     if (this.responseText === '' || this.responseText === '[]') {
+  // //       logContainer.innerHTML = `<p>No data found</p>`
+  // //     } else {
+  // //       logContainer.innerHTML = ''
+  // //       console.log(this.responseText)
+  // //       for (let log of JSON.parse(this.responseText)) {
+  // //         addLog(logContainer, log)
+  // //       }
+  // //       document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
+  // //         toggleHide.addEventListener('click', (ev) => {
+  // //           let logText = toggleHide.querySelector('p')
+  // //           let timestamp = toggleHide.querySelector('small')
+  // //           if (logText.classList.contains('hidden')) {
+  // //             logText.classList.remove('hidden')
+  // //             timestamp.classList.remove('mt-2')
+  // //           } else {
+  // //             logText.classList.add('hidden')
+  // //             timestamp.classList.add('mt-3')
+  // //           }
+  // //         })
+  // //       })
+  //       document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
+  //         document.getElementById('uvuId').value
+  //       }`
+  //       document.querySelector('#submitButton').disabled = false
+  //     }
+  //   } else {
+  //     logContainer.innerHTML = `<p class="warning">Something went wrong. Please try again</p>`
+  //     //error message
+  //   }
+  // }
+  // request.open('GET', requestURL, true)
+  // request.send()
 }
 
 document.getElementById('logForm').addEventListener('submit', async (ev) => {
@@ -138,15 +164,6 @@ document.getElementById('logForm').addEventListener('submit', async (ev) => {
     .then(function (response) {
       console.log(response), self.requestLogs()
     })
-
-  //   const addLog = await fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(newLog),
-  //   }).then(self.requestLogs())
 })
 
 function createUUID() {
