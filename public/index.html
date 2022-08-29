@@ -5,9 +5,6 @@
     <meta charset="utf8" />
 
     <link rel="icon" type="image/x-icon" href="favicon.ico?" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body onload="onPageLoad()" class="border-box">
     <header class="bg-[#F9842A] p-5 mb-5">UVU Logging System</header>
@@ -50,7 +47,14 @@
           type="submit"
           id="submitButton"
           data-cy="add_log_btn"
-          class="bg-green-400 p-3 disabled:bg-gray-400 disabled:opacity-75 width: 1/2 self-start"
+          class="
+            bg-green-400
+            p-3
+            disabled:bg-gray-400 disabled:opacity-75
+            width:
+            1/2
+            self-start
+          "
           disabled
         >
           Add New Log
@@ -68,6 +72,8 @@
     </form>
 
     <script src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
 
