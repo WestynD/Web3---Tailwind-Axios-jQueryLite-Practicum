@@ -1,8 +1,7 @@
 async function onPageLoad() {
-  // Set up the default behavior for some DOM elements
   selectCourses()
 
-  document.getElementById('uvuId').value = '10234567'
+  // document.getElementById('uvuId').value = '10234567'
 }
 
 async function selectCourses() {
