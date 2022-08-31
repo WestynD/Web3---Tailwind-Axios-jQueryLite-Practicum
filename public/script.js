@@ -80,17 +80,17 @@ async function requestLogs() {
   var requestUrl = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${
     document.getElementById('course').value
   }&uvuId=${document.getElementById('uvuId').value}`
-
   const requestedLogs = await axios.get(requestUrl)
+  let retrievedLogs = requestedLogs.data
   let logList = document.querySelector('#logDiv > ul')
-  if (this.requestedLogs === '') {
-    logList.innerHTML = `<p>No data found</p>`
-  } else {
-    logList.innerHTML = ''
-    console.log(this.responseText)
-    for (let log of JSON.parse(this.responseText)) {
-      addLog(logList, log)
-    }
+  // if (retrievedLogs === 0) {
+  //   logList.innerHTML = `<p>No data found</p>`
+  // } else {
+  logList.innerHTML = ''
+  console.log(retrievedLogs)
+  for (let log of retrievedLogs) {
+    addLog(logList, log)
+    // }
     document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
       toggleHide.addEventListener('click', (ev) => {
         let logText = toggleHide.querySelector('p')
@@ -104,8 +104,11 @@ async function requestLogs() {
         }
       })
     })
+    document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
+      document.getElementById('uvuId').value
+    }`
+    document.querySelector('#submitButton').disabled = false
   }
-
   // // request.onreadystatechange = function () {
   // //   let logContainer = document.querySelector('#logDiv > ul')
   // //   if (this.status == 200 || this.status == 304) {
