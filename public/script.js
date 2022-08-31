@@ -76,12 +76,12 @@ function addLog(container, log) {
 
 async function requestLogs() {
   // Requests the log data from the server
-  var request = new XMLHttpRequest()
-  var requestURL = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${
+  //var request = new XMLHttpRequest()
+  var requestUrl = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${
     document.getElementById('course').value
   }&uvuId=${document.getElementById('uvuId').value}`
 
-  const requestedLogs = await axios.get(url)
+  const requestedLogs = await axios.get(requestUrl)
   let logList = document.querySelector('#logDiv > ul')
   if (this.requestedLogs === '') {
     logList.innerHTML = `<p>No data found</p>`
