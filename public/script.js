@@ -78,35 +78,35 @@ async function requestLogs() {
   const requestedLogs = await axios.get(requestUrl)
   let retrievedLogs = requestedLogs.data
   let logList = $('#logDiv > ul')
-  // if (retrievedLogs === 0) {
-  //   logList.innerHTML = `<p>No data found</p>`
-  // } else {
-  logList.innerHTML = ''
-  console.log(retrievedLogs)
-  for (let log of retrievedLogs) {
-    addLog(logList, log)
-    // }
+  if (retrievedLogs.length === 0) {
+    logList.innerHTML = `<p>No data found</p>`
+  } else {
+    logList.innerHTML = ''
+    console.log(retrievedLogs)
+    for (let log of retrievedLogs) {
+      addLog(logList, log)
+    }
     $('.clickToHide').forEach((toggleHide) => {
-      toggleHide.addEventListener('click', (ev) => {
+      $(toggleHide).on('click', (ev) => {
         let logText = toggleHide.querySelector('p')
         let timestamp = toggleHide.querySelector('small')
-        if (logText.classList.contains('hidden')) {
-          logText.classList.remove('hidden')
-          timestamp.classList.remove('mt-2')
+        if ($(logText).hasClass('hidden')) {
+          $(logText).removeClass('hidden')
+          $(timestamp).removeClass('mt-2')
         } else {
-          logText.classList.add('hidden')
-          timestamp.classList.add('mt-3')
+          $(logText).addClass('hidden')
+          $(timestamp).addClass('mt-3')
         }
       })
     })
-    document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
+    $('#uvuIdDisplay')[0].innerHTML = `Student Logs for ${
       document.getElementById('uvuId').value
     }`
-    document.querySelector('#submitButton').disabled = false
+    $('#submitButton')[0].disabled = false
   }
 }
 
-document.getElementById('logForm').addEventListener('submit', async (ev) => {
+$('#logForm').on('submit', async (ev) => {
   // Submit handler. Creates object from the form data, submits to the db and then displays the data.
   ev.preventDefault()
   ev.stopPropagation()

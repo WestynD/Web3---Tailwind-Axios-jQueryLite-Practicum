@@ -40,6 +40,16 @@ class ElementCollection extends Array {
     return this
   }
 
+  hasClass(className) {
+    let doesHaveClass = false
+    this.forEach((e) => {
+      if (e.classList.contains(className)) {
+        doesHaveClass = true
+      }
+    })
+    return doesHaveClass
+  }
+
   css(prop, val) {
     const camelProp = property.replace(/(-[a-z])/, (g) => {
       return g.replace('-', '').toUpperCase
