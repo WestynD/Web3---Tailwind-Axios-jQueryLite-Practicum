@@ -5,13 +5,13 @@ class ElementCollection extends Array {
     })
     if (document.readyState !== 'loading') {
       cb()
-    } else this.on('DOMContentLoaded', cb())
+    } else this.on('DOMContentLoaded', cb)
     return this
   }
 
   on(ev, cbOrSelector, cb) {
     if (typeof cbOrSelector === 'function') {
-      this.forEach((e) => e.addEventListener(ev, cb))
+      this.forEach((e) => e.addEventListener(ev, cbOrSelector))
     } else {
       this.forEach((elem) => {
         elem.addEventListener(event, (e) => {

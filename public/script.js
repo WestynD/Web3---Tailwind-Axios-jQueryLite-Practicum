@@ -21,7 +21,7 @@ async function requestCourses() {
   return response.data
 }
 
-document.getElementById('course').addEventListener('change', (ev) => {
+$('#course').on('change', (ev) => {
   // Shows the uvuId text entry if a course is selected and hides it if none is selected.
   let div = document.getElementById('idDiv')
 
