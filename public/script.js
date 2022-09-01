@@ -1,7 +1,7 @@
+console.log($(document))
+
 async function onPageLoad() {
   selectCourses()
-
-  // document.getElementById('uvuId').value = '10234567'
 }
 
 async function selectCourses() {
