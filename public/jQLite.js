@@ -47,6 +47,10 @@ class ElementCollection extends Array {
     this.forEach((e) => (e.style[camelProp] = value))
     return this
   }
+
+  text(newText) {
+    this.forEach((e) => (e.innerText = newText))
+  }
 }
 
 function $(param) {

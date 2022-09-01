@@ -33,21 +33,21 @@ $('#course').on('change', (ev) => {
   }
 })
 
-document.getElementById('uvuId').addEventListener('input', (ev) => {
+$('#uvuId').on('input', (ev) => {
   // Checks id to make sure it doesn't exceed 8 chars, is only digits, and fires off an ajax call if 8 valid characters are sent back.
-  let warningMessage = document.getElementById('idWarning')
+  let warningMsg = $('#idWarning')
   let uvuId = ev.target.value
   if (uvuId.length > 8) {
-    warningMessage.classList.remove('hidden')
-    warningMessage.innerText = 'Your id should only be 8 digits long'
+    warningMsg.removeClass('hidden')
+    warningMsg.text('Your id should only be 8 digits long')
     ev.target.value = uvuId.slice(0, 8)
   } else if (uvuId.length < 8) {
     let re = /^\d*$/
     if (re.test(uvuId)) {
       //All is good. Continue
     } else {
-      warningMessage.classList.remove('hidden')
-      warningMessage.innerText = 'Your id can only consist of digits'
+      warningMsg.removeClass('hidden')
+      warningMsg.text('Your id can only consist of digits')
     }
   } else {
     let re = /^\d\d\d\d\d\d\d\d$/gm
@@ -55,8 +55,8 @@ document.getElementById('uvuId').addEventListener('input', (ev) => {
       console.log('ajax call')
       requestLogs()
     } else {
-      warningMessage.classList.remove('hidden')
-      warningMessage.innerText = 'Your id should consist of 8 digits'
+      warningMsg.removeClass('hidden')
+      warningMsg.text('Your id should consist of 8 digits')
     }
   }
 })
