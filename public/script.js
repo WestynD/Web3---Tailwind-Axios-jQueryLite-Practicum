@@ -66,7 +66,9 @@ function addLog(container, log) {
   $('#logDiv').removeClass('hidden')
   let logElem = document.createElement('li')
   $(logElem).addClass('clickToHide')
-  logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre><hr class="my-5 border-gray-500">`
+  $(logElem).html(
+    `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre><hr class="my-5 border-gray-500">`
+  )
   container[0].appendChild(logElem)
 }
 
@@ -79,9 +81,9 @@ async function requestLogs() {
   let retrievedLogs = requestedLogs.data
   let logList = $('#logDiv > ul')
   if (retrievedLogs.length === 0) {
-    logList[0].innerHTML = `<p>No data found for the entered ID</p>`
+    logList.html(`<p>No data found for the entered ID</p>`)
   } else {
-    logList[0].innerHTML = ''
+    logList.html('')
     console.log(retrievedLogs)
     for (let log of retrievedLogs) {
       addLog(logList, log)
@@ -99,9 +101,9 @@ async function requestLogs() {
         }
       })
     })
-    $('#uvuIdDisplay')[0].innerHTML = `Student Logs for ${
-      document.getElementById('uvuId').value
-    }`
+    $('#uvuIdDisplay').html(
+      `Student Logs for ${document.getElementById('uvuId').value}`
+    )
     $('#submitButton')[0].disabled = false
   }
 }

@@ -22,14 +22,6 @@ class ElementCollection extends Array {
     return this
   }
 
-  next() {
-    return this.map((e) => e.nextElementSibling).filter((e) => e != null)
-  }
-
-  previous() {
-    return this.map((e) => e.previousElementSibling).filter((e) => e != null)
-  }
-
   addClass(className) {
     this.forEach((e) => e.classList.add(className))
     return this
@@ -69,6 +61,10 @@ class ElementCollection extends Array {
       val = e.value
     })
     return val
+  }
+
+  html(newHTML) {
+    this.forEach((e) => (e.innerHTML = newHTML))
   }
 }
 
