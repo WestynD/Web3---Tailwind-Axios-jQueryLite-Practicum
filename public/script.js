@@ -1,8 +1,4 @@
-console.log($(document))
-
-async function onPageLoad() {
-  selectCourses()
-}
+$(document).ready(selectCourses())
 
 async function selectCourses() {
   // Get courses from db and create options for them
