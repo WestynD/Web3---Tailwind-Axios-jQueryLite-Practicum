@@ -50,6 +50,15 @@ class ElementCollection extends Array {
 
   text(newText) {
     this.forEach((e) => (e.innerText = newText))
+    return this
+  }
+
+  val() {
+    let val
+    this.forEach(function (e) {
+      val = e.value
+    })
+    return val
   }
 }
 

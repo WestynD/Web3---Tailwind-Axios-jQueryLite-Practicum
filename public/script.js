@@ -63,22 +63,21 @@ $('#uvuId').on('input', (ev) => {
 
 function addLog(container, log) {
   // Helper function to add a json log to the list of logs on the page
-  document.querySelector('#logDiv').classList.remove('hidden')
+  $('#logDiv').removeClass('hidden')
   let logElem = document.createElement('li')
-  logElem.classList.add('clickToHide')
+  $(logElem).addClass('clickToHide')
   logElem.innerHTML = `<div><small>${log.date}</small></div><pre><p class="break-all w-1/1 inline-block whitespace-pre-line">${log.text}</p></pre><hr class="my-5 border-gray-500">`
-  container.appendChild(logElem)
+  container[0].appendChild(logElem)
 }
 
 async function requestLogs() {
   // Requests the log data from the server
-  //var request = new XMLHttpRequest()
-  var requestUrl = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${
-    document.getElementById('course').value
-  }&uvuId=${document.getElementById('uvuId').value}`
+  var requestUrl = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${$(
+    '#course'
+  ).val()}&uvuId=${$('#uvuId').val()}`
   const requestedLogs = await axios.get(requestUrl)
   let retrievedLogs = requestedLogs.data
-  let logList = document.querySelector('#logDiv > ul')
+  let logList = $('#logDiv > ul')
   // if (retrievedLogs === 0) {
   //   logList.innerHTML = `<p>No data found</p>`
   // } else {
@@ -87,7 +86,7 @@ async function requestLogs() {
   for (let log of retrievedLogs) {
     addLog(logList, log)
     // }
-    document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
+    $('.clickToHide').forEach((toggleHide) => {
       toggleHide.addEventListener('click', (ev) => {
         let logText = toggleHide.querySelector('p')
         let timestamp = toggleHide.querySelector('small')
@@ -105,42 +104,6 @@ async function requestLogs() {
     }`
     document.querySelector('#submitButton').disabled = false
   }
-  // // request.onreadystatechange = function () {
-  // //   let logContainer = document.querySelector('#logDiv > ul')
-  // //   if (this.status == 200 || this.status == 304) {
-  // //     if (this.responseText === '' || this.responseText === '[]') {
-  // //       logContainer.innerHTML = `<p>No data found</p>`
-  // //     } else {
-  // //       logContainer.innerHTML = ''
-  // //       console.log(this.responseText)
-  // //       for (let log of JSON.parse(this.responseText)) {
-  // //         addLog(logContainer, log)
-  // //       }
-  // //       document.querySelectorAll('.clickToHide').forEach((toggleHide) => {
-  // //         toggleHide.addEventListener('click', (ev) => {
-  // //           let logText = toggleHide.querySelector('p')
-  // //           let timestamp = toggleHide.querySelector('small')
-  // //           if (logText.classList.contains('hidden')) {
-  // //             logText.classList.remove('hidden')
-  // //             timestamp.classList.remove('mt-2')
-  // //           } else {
-  // //             logText.classList.add('hidden')
-  // //             timestamp.classList.add('mt-3')
-  // //           }
-  // //         })
-  // //       })
-  //       document.getElementById('uvuIdDisplay').innerHTML = `Student Logs for ${
-  //         document.getElementById('uvuId').value
-  //       }`
-  //       document.querySelector('#submitButton').disabled = false
-  //     }
-  //   } else {
-  //     logContainer.innerHTML = `<p class="warning">Something went wrong. Please try again</p>`
-  //     //error message
-  //   }
-  // }
-  // request.open('GET', requestURL, true)
-  // request.send()
 }
 
 document.getElementById('logForm').addEventListener('submit', async (ev) => {
