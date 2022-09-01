@@ -79,9 +79,9 @@ async function requestLogs() {
   let retrievedLogs = requestedLogs.data
   let logList = $('#logDiv > ul')
   if (retrievedLogs.length === 0) {
-    logList.innerHTML = `<p>No data found</p>`
+    logList[0].innerHTML = `<p>No data found for the entered ID</p>`
   } else {
-    logList.innerHTML = ''
+    logList[0].innerHTML = ''
     console.log(retrievedLogs)
     for (let log of retrievedLogs) {
       addLog(logList, log)
