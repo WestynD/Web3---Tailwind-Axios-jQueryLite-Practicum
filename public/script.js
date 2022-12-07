@@ -16,7 +16,7 @@ async function selectCourses() {
 async function requestCourses() {
   // Request courses from DB
   const response = await axios.get(
-    'https://json-server-1ugqwq--3000.local.webcontainer.io/api/v1/courses'
+    'http://localhost:3000/api/v1/courses'
   )
   return response.data
 }
@@ -74,7 +74,7 @@ function addLog(container, log) {
 
 async function requestLogs() {
   // Requests the log data from the server
-  var requestUrl = `https://json-server-1ugqwq--3000.local.webcontainer.io/logs?courseId=${$(
+  var requestUrl = `http://localhost:3000/logs?courseId=${$(
     '#course'
   ).val()}&uvuId=${$('#uvuId').val()}`
   const requestedLogs = await axios.get(requestUrl)
@@ -123,7 +123,7 @@ $('#logForm').on('submit', async (ev) => {
     id: createUUID(),
   }
   await axios
-    .post('https://json-server-1ugqwq--3000.local.webcontainer.io/logs', newLog)
+    .post('http://localhost:3000/logs', newLog)
     .then(function (response) {
       console.log(response), self.requestLogs()
     })
